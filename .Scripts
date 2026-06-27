@@ -7,7 +7,7 @@ getgenv().ConstructionManuallyActivated = false
 
 local Window = WindUI:CreateWindow({
     Title = "Philly Streetz 2", 
-    Icon = "rbxassetid://114230660438357",
+    Icon = "rbxassetid://71371252608531",
     IconSize = 45,
     Author = "Vexlora.xyz",
     Folder = "MySuperHub",
@@ -32,21 +32,27 @@ local Window = WindUI:CreateWindow({
     },
 
     Thumbnail = {
-        Image = "rbxassetid://114230660438357", 
+        Image = "rbxassetid://71371252608531", 
         Title = "Thumbnail",
     },
 })
 Window:EditOpenButton({
-    Title = "Vexlora  Paid Ps2",
-    Icon = "rbxassetid://114230660438357",
+    Title = "Vexlora┃Paid",
+    Icon = "rbxassetid://71371252608531",
     CornerRadius = UDim.new(0,16),
     StrokeThickness = 2,
-    Color = ColorSequence.new(Color3.fromRGB(13, 105, 172)), -- dark blue
-    OnlyMobile = false,
-    Enabled = true,
-    Draggable = true,
-    Position = UDim2.new(0.5, -75, 0, 50), -- Top middle of screen
-    Size = UDim2.new(0, 150, 0, 50), -- Button size
+    Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 155, 125)),
+    ColorSequenceKeypoint.new(0.35, Color3.fromRGB(0, 190, 145)),
+    ColorSequenceKeypoint.new(0.70, Color3.fromRGB(0, 220, 165)),
+    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 245, 185))
+}),
+
+OnlyMobile = false,
+Enabled = true,
+Draggable = true,
+Position = UDim2.new(0.5, -75, 0, 50), -- Top middle of screen
+Size = UDim2.new(0, 150, 0, 50), -- Button size
 })
 
 
@@ -55,8 +61,7 @@ local SenseESPInterface =
 
 if SenseESPInterface then
     WindUI:Notify({
-        Title = "Sense ESP",
-        Content = "Loading Sense ESP...\nSense ESP library loaded successfully!\nSense ESP Initialized!",
+        Title = "Loading up...",
         Duration = 3,
         Icon = "bird",
     })
@@ -75,7 +80,7 @@ end
 
 local MainTab = Window:Tab({
     Title = "Main",
-    Icon = "percent", 
+    Icon = "list", 
     Locked = false,
 })
 local ExploitsTab = Window:Tab({
@@ -94,7 +99,7 @@ local FunTab = Window:Tab({
     Locked = false,
 })
 local UtilitiesTab = Window:Tab({
-    Title = "Player/Mod",
+    Title = "Player Mods",
     Icon = "circle-ellipsis", 
     Locked = false,
 })
@@ -142,30 +147,28 @@ end
 updateCharacterReferences()
 
 local locations = {
-    ["Bank"] = Vector3.new(-469, 317, -423),
-    ["Mail Job"] = Vector3.new(-35, 317, -384),
-    ["Guapo"] = Vector3.new(171, 317, -164),
-    ["Chop Chop"] = Vector3.new(-908, 317, 517),
-    ["Gas Station"] = Vector3.new(288, 317, 299),
-    ["Car Dealership"] = Vector3.new(646, 317, 347),
-    ["Black Market 1"] = Vector3.new(316, 317, 1093),
-    ["Black Market 2"] = Vector3.new(850, 320, -491),
-    ["Black Market 3"] = Vector3.new(-457, 328, 784),
-    ["Sell Stolen Loot"] = Vector3.new(48, 317, 791),
-    ["Shirts/Shoes"] = Vector3.new(887, 318, -311),
+    ["Dealership"] = Vector3.new(647.3, 317.4, 342.2),
+    ["Bank"] = Vector3.new(-446.3, 317.4, -421.9),
+    ["Brickhouse Gym"] = Vector3.new(2776.7, 288.2, 1738.3),
+    ["Clothing Shop"] = Vector3.new(881.7, 317.6, -308.7),
+    ["Gas Station"] = Vector3.new(2461.5, 284.3, 2438.7),
+    ["GunShop 1"] = Vector3.new(-449.6, 328.7, 782.6),
+    ["Gun Shop 2"] = Vector3.new(195, 318, 945),
+    ["Reps Machine"] = Vector3.new(-135, 317, 162),
     ["Sell Repz"] = Vector3.new(2486, 284, -369),
-    ["Lavanderia Laundromat"] = Vector3.new(2450, 286, -1332),
-    ["Basketball Court Rooftop"] = Vector3.new(-964, 497, -124),
+    ["Sell Stolen Loot"] = Vector3.new(48, 317, 791),
+    ["Laundromat"] = Vector3.new(2450, 286, -1332),
+    ["Basketball Rooftop"] = Vector3.new(-964, 497, -124),
     ["Laptops/Phones"] = Vector3.new(693, 317, -76),
     ["Biteway Inside"] = Vector3.new(2510, 278, -1162),
     ["Ice Blox"] = Vector3.new(-1281, 317, 519),
-    ["Gun Shop"] = Vector3.new(195, 318, 945),
     ["Garbage Job"] = Vector3.new(288, 317, 797),
     ["Clinic"] = Vector3.new(-479, 317, -408),
     ["Playgrounds"] = Vector3.new(194, 321, 43),
+    ["Mail Job"] = Vector3.new(-35, 317, -384),
+    ["Guapo"] = Vector3.new(171, 317, -164),
+    ["Chop Chop"] = Vector3.new(-908, 317, 517),
     ["Logo Train Tracks"] = Vector3.new(110, 349, 895),
-    ["Reps Machine"] = Vector3.new(-135, 317, 162),
-    ["Another Gas Station"] = Vector3.new(-601, 317, 1314),
 }
 
 local SelectedLocation = nil
@@ -201,30 +204,28 @@ end
 MainTab:Dropdown({
     Title = "Teleport Location",
     Values = {
+        "Dealership",
         "Bank",
-        "Mail Job",
-        "Guapo",
-        "Chop Chop",
+        "Brickhouse Gym",
+        "Clothing Shop",
         "Gas Station",
-        "Car Dealership",
-        "Black Market 1",
-        "Black Market 2",
-        "Black Market 3",
-        "Sell Stolen Loot",
-        "Shirts/Shoes",
+        "GunShop 1",
+        "Gun Shop 2",
+        "Reps Machine",
         "Sell Repz",
-        "Lavanderia Laundromat",
-        "Basketball Court Rooftop",
+        "Sell Stolen Loot",
+        "Laundromat",
+        "Basketball Rooftop",
         "Laptops/Phones",
         "Biteway Inside",
         "Ice Blox",
-        "Gun Shop",
         "Garbage Job",
         "Clinic",
         "Playgrounds",
+        "Mail Job",
+        "Guapo",
+        "Chop Chop",
         "Logo Train Tracks",
-        "Reps Machine",
-        "Another Gas Station",
     },
 
     Callback = function(option)
@@ -1046,13 +1047,6 @@ local playerDropdown = FunTab:Dropdown({
 		if selNameStr == "None" or selNameStr == "" then
 			SelectedPlayer = nil
 
-			WindUI:Notify({
-				Title = "Player Selection",
-				Content = "No player selected",
-				Duration = 2,
-				Icon = "x"
-			})
-
 			return
 		end
 
@@ -1060,8 +1054,7 @@ local playerDropdown = FunTab:Dropdown({
 
 		if SelectedPlayer then
 			WindUI:Notify({
-				Title = "Player Selected",
-				Content = selNameStr .. " selected",
+				Title = "Vexlora bypass",
 				Duration = 2,
 				Icon = "check"
 			})
@@ -1252,8 +1245,8 @@ spectateToggle = FunTab:Toggle({
 			end
 
 			WindUI:Notify({
-				Title = "Spectate",
-				Content = "Off",
+				Title = "Vexlora Bypass",
+				Content = "Loading...",
 				Duration = 2,
 				Icon = "circle-plus"
 			})
@@ -1938,38 +1931,75 @@ end)
             
 UtilitiesTab:Divider()
 
+getgenv().AntiFallDamage = false
+getgenv().AntiFallConn = getgenv().AntiFallConn or nil
+getgenv().AntiFallCharConn = getgenv().AntiFallCharConn or nil
 
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-local antiRagdollConnection = nil
-local antiJumpConnection = nil
+local function DisableFallDamage()
+    local char = LocalPlayer.Character
+    if not char then return end
+
+    for _, v in ipairs(char:GetDescendants()) do
+        if v.Name:lower():find("fall") 
+        or v.Name:lower():find("ragdoll") 
+        or v.Name:lower():find("knock") then
+            pcall(function()
+                if v:IsA("Script") or v:IsA("LocalScript") then
+                    v.Disabled = true
+                end
+            end)
+        end
+    end
+
+    local hum = char:FindFirstChildOfClass("Humanoid")
+    if hum then
+        pcall(function()
+            hum:SetStateEnabled(Enum.HumanoidStateType.FallingDown, false)
+            hum:SetStateEnabled(Enum.HumanoidStateType.Ragdoll, false)
+        end)
+
+        if hum.Health < hum.MaxHealth then
+            hum.Health = hum.MaxHealth
+        end
+    end
+end
 
 UtilitiesTab:Toggle({
     Title = "Anti Fall Damage",
     Desc = "Player",
     Icon = "feather",
     Type = "Checkbox",
+    Default = false,
     Callback = function(v)
-        local pl = game:GetService("Players").LocalPlayer
+        getgenv().AntiFallDamage = v
 
-        if antiRagdollConnection then
-            antiRagdollConnection:Disconnect()
-            antiRagdollConnection = nil
+        if getgenv().AntiFallConn then
+            getgenv().AntiFallConn:Disconnect()
+            getgenv().AntiFallConn = nil
         end
 
-        if antiJumpConnection then
-            antiJumpConnection:Disconnect()
-            antiJumpConnection = nil
+        if getgenv().AntiFallCharConn then
+            getgenv().AntiFallCharConn:Disconnect()
+            getgenv().AntiFallCharConn = nil
         end
 
         if v then
-            antiRagdollConnection = game:GetService("RunService").Stepped:Connect(function()
-                local char = pl.Character
-                local hum = char and char:FindFirstChildOfClass("Humanoid")
+            DisableFallDamage()
 
-                if hum and hum.FloorMaterial == Enum.Material.Air then
-                    if hum.Health < hum.MaxHealth then
-                        hum.Health = hum.MaxHealth
-                    end
+            getgenv().AntiFallConn = RunService.Stepped:Connect(function()
+                if getgenv().AntiFallDamage then
+                    DisableFallDamage()
+                end
+            end)
+
+            getgenv().AntiFallCharConn = LocalPlayer.CharacterAdded:Connect(function()
+                task.wait(1)
+                if getgenv().AntiFallDamage then
+                    DisableFallDamage()
                 end
             end)
         end
@@ -2004,339 +2034,5 @@ UtilitiesTab:Toggle({
             antiCombatLoop = false
             combatThread = nil
         end
-    end
-})
-
-local antiKnockoutLoop = false
-local knockoutThread = nil
-
-UtilitiesTab:Toggle({
-    Title = "Anti Knockout",
-    Desc = "Player",
-    Icon = "feather",
-    Type = "Checkbox",
-    Callback = function(v)
-        antiKnockoutLoop = v
-
-        local plr = game:GetService("Players").LocalPlayer
-        local settings = plr:FindFirstChild("Settings")
-        local sObj = settings and settings:FindFirstChild("Settings")
-
-        if v then
-            knockoutThread = task.spawn(function()
-                while antiKnockoutLoop do
-                    if sObj and sObj:GetAttribute("KnockedOut") == true then
-                        sObj:SetAttribute("KnockedOut", false)
-                    end
-                    task.wait(0.2)
-                end
-            end)
-        else
-            antiKnockoutLoop = false
-            knockoutThread = nil
-        end
-    end
-})
-
-local modState = {
-    infDamage = false,
-    fastReload = false,
-    antiJam = false,
-    autoActivate = false,
-    noRecoil = false,
-    fastEquip = false,
-    fastShoot = false,
-}
-
-local function getAllGuns()
-    local guns = {}
-
-    local function scan(container)
-        for _, tool in ipairs(container:GetChildren()) do
-            if tool:IsA("Tool") and tool:FindFirstChild("Settings") then
-                table.insert(guns, tool)
-            end
-        end
-    end
-
-    local player = game.Players.LocalPlayer
-
-    if player.Backpack then
-        scan(player.Backpack)
-    end
-
-    if player.Character then
-        scan(player.Character)
-    end
-
-    return guns
-end
-
-local function applyGunMods(gun, mods)
-    local settings = gun:FindFirstChild("Settings")
-    if not settings or not settings:IsA("ModuleScript") then
-        return
-    end
-
-    local gunData = require(settings)
-
-    if type(gunData) ~= "table" then
-        return
-    end
-
-    if mods.infDamage then
-        for _, stat in ipairs({
-            "headDamage",
-            "torsoDamage",
-            "armDamage",
-            "legDamage",
-            "handDamage",
-            "footDamage",
-            "vestDamage",
-            "hatDamage"
-        }) do
-            if gunData[stat] then
-                gunData[stat] = math.huge
-            end
-        end
-    end
-
-    if mods.fastReload then
-        if gunData.reloadAnimation then gunData.reloadAnimation = 0 end
-        if gunData.reloadSound then gunData.reloadSound = 0 end
-    end
-
-    if mods.antiJam then
-        if gunData.jamChance then gunData.jamChance = 0 end
-        if gunData.jamIncrease then gunData.jamIncrease = 0 end
-    end
-
-    if mods.autoActivate then
-        if gunData.fireMode then gunData.fireMode = "auto" end
-        if gunData.autoCooldown then gunData.autoCooldown = 0.01 end
-    end
-
-    if mods.noRecoil then
-        if gunData.recoil then gunData.recoil = 0 end
-        if gunData.spread then gunData.spread = 0 end
-    end
-
-    if mods.fastEquip then
-        if gunData.equipAnimation then gunData.equipAnimation = 0 end
-        if gunData.unequipAnimation then gunData.unequipAnimation = 0 end
-        if gunData.sprintAnimation then gunData.sprintAnimation = 0 end
-        if gunData.raiseAnimation then gunData.raiseAnimation = 0 end
-        if gunData.pointAnimation then gunData.pointAnimation = 0 end
-    end
-
-    if mods.fastShoot then
-        if gunData.semiCooldown then gunData.semiCooldown = 0 end
-        if gunData.autoCooldown then gunData.autoCooldown = 0 end
-    end
-end
-
-local function applyAllMods()
-    for _, gun in ipairs(getAllGuns()) do
-        applyGunMods(gun, modState)
-    end
-end
-
-UtilitiesTab:Button({
-    Title = "Fast Reload",
-    Color = Color3.fromRGB(13, 105, 172),
-    Callback = function(Value)
-        modState.fastReload = Value
-        applyAllMods()
-    end,
-})
-
-UtilitiesTab:Button({
-    Title = "Anti Jam",
-    Color = Color3.fromRGB(13, 105, 172),
-    Callback = function(Value)
-        modState.antiJam = Value
-        applyAllMods()
-    end,
-})
-
-UtilitiesTab:Button({
-    Title = "Auto Activate",
-    Color = Color3.fromRGB(13, 105, 172),
-    Callback = function(Value)
-        modState.autoActivate = Value
-        applyAllMods()
-    end,
-})
-
-UtilitiesTab:Button({
-    Title = "No Recoil",
-    Color = Color3.fromRGB(13, 105, 172),
-    Callback = function(Value)
-        modState.noRecoil = Value
-        applyAllMods()
-    end,
-})
-UtilitiesTab:Button({
-    Title = "Fast Equip",
-    Color = Color3.fromRGB(13, 105, 172),
-    Callback = function(Value)
-        modState.fastEquip = Value
-        applyAllMods()
-    end,
-})
-UtilitiesTab:Button({
-    Title = "Fast Shoot / No Fire Rate",
-    Color = Color3.fromRGB(13, 105, 172),
-    Callback = function(Value)
-        modState.fastShoot = Value
-        applyAllMods()
-    end,
-})
-UtilitiesTab:Button({
-    Title = "Apply All Mods",
-    Color = Color3.fromRGB(13, 105, 172),
-    Callback = function()
-        applyAllMods()
-    end,
-})
-UtilitiesTab:Button({
-    Title = "Refresh & Reapply",
-    Color = Color3.fromRGB(13, 105, 172),
-    Callback = function()
-        applyAllMods()
-    end,
-})
-
-
-local player = game.Players.LocalPlayer
-local Camera = workspace.CurrentCamera
-local collecting = false
-local function StealMoneyPrompt()
-    for _, v in pairs(workspace.Dollas:GetDescendants()) do
-        if v:IsA("ProximityPrompt") and v.Name == "ProximityPrompt" then
-            v.HoldDuration = 0
-            v.RequiresLineOfSight = false
-        end
-    end
-end
-local function fireproximityprompt(prompt)
-    if prompt and prompt:IsA("ProximityPrompt") then
-        prompt:InputHoldBegin()
-        task.wait(prompt.HoldDuration or 0)
-        prompt:InputHoldEnd()
-    end
-end
-local function collectAndReturn()
-    if collecting then return end
-    collecting = true
-
-    local char = player.Character
-    local hrp = char and char:FindFirstChild("HumanoidRootPart")
-    if not hrp then collecting = false return end
-
-    local originalCFrame = hrp.CFrame
-
-    StealMoneyPrompt()
-
-    task.spawn(function()
-        local foundAny = false
-
-        for _, v in pairs(workspace.Dollas:GetDescendants()) do
-            if v:IsA("ProximityPrompt") and v.Name == "ProximityPrompt" then
-                foundAny = true
-                StealMoneyPrompt()
-
-                Camera.CFrame = CFrame.new(Camera.CFrame.Position, v.Parent.CFrame.Position)
-
-                local humanoid = char and char:FindFirstChildOfClass("Humanoid")
-                if humanoid and hrp then
-                    humanoid:ChangeState(0)
-                    repeat task.wait() until not player:GetAttribute("LastACPos")
-                    hrp.CFrame = v.Parent.CFrame
-                end
-
-                task.wait(0.25)
-                fireproximityprompt(v)
-                task.wait(0.25)
-            end
-        end
-
-        if not foundAny then
-            pcall(function()
-                WindUI:Notify({
-                    Title = "Pickup Dropped Bread",
-                    Content = "No Dropped Money Has Been found!",
-                    Duration = 4,
-                    Icon = "rocket", 
-                })
-            end)
-        end
-        task.wait(0.5)
-        if hrp then
-            hrp.CFrame = originalCFrame
-        end
-
-        collecting = false
-    end)
-end
-local Button = AutoFarmTab:Button({
-    Title = "Collect Dropped Cash",
-    Desc = "",
-    Color = Color3.fromRGB(13, 105, 172),
-
-    Locked = false,
-    Callback = function()
-        collectAndReturn()
-    end
-})
-
--- Function to handle the Admin Tag (Discord Link)
-local function ApplyAdminTag(character)
-if not character then return end
-local head = character:WaitForChild("Head", 5)
-if not head then return end
-
--- Check if tag already exists to prevent duplication
-if head:FindFirstChild("AdminTag") then head.AdminTag:Destroy() end
-
-local billboard = Instance.new("BillboardGui")
-billboard.Name = "AdminTag"
-billboard.AlwaysOnTop = true
-billboard.Size = UDim2.new(0, 150, 0, 50)
-billboard.StudsOffset = Vector3.new(0, 2.5, 0) -- Adjusted height slightly
-billboard.Parent = head
-
-local textLabel = Instance.new("TextLabel")
-textLabel.Name = "AdminText"
-textLabel.Size = UDim2.new(1, 0, 1, 0)
-textLabel.BackgroundTransparency = 1
-textLabel.Text = "discord.gg/CharlieServices"
-
--- Changed to Light Blue
-textLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
-
-textLabel.TextScaled = true
-textLabel.Font = Enum.Font.SourceSansBold
-textLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
-textLabel.TextStrokeTransparency = 0
-textLabel.Parent = billboard
-end
-
--- Run tag function on spawn and respawn
-player.CharacterAdded:Connect(ApplyAdminTag)
-if player.Character then
-    ApplyAdminTag(player.Character)
-end
-
--- Example Tab (You need at least one tab for the UI to be useful!)
-local MainTab = Window:CreateTab({
-    Title = "Main",
-    Icon = "home",
-})
-
-MainTab:AddButton({
-    Title = "Print Status",
-    Callback = function()
-        print("Script is running smoothly.")
     end
 })
